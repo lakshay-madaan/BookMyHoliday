@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="getIndigoFlight" doc:id="ff9d0550-eec0-4fa2-8eee-ff4a922c859b" >
+		<logger level="INFO" doc:name="GET Flight" doc:id="41b0bdd9-41b2-4e5e-8e19-5fda67e23f86" message="GET Flight Flow Initiated"/>
+		<db:select doc:name="Fetch Flight Information From Indigo Database" doc:id="44813936-efde-43b2-b52f-4409b18f7f26" config-ref="Database_Config">
+			<db:sql ><![CDATA[SELECT * FROM indigo WHERE origin = :origin AND destination = :destination AND departureDate = :date]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+'origin': attributes.queryParams.origin default "",
+'destination' : attributes.queryParams.destination default "",
+'date' : attributes.queryParams.departureDate default "1990-01-01"
+}]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="JAVA to JSON" doc:id="a678285e-bfc7-45a0-b4e7-183e3b8efbf4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	ID: payload01.ID as String default "",
+	flightCode: payload01.flightCode default "",
+	origin: payload01.origin default "",
+	destination: payload01.destination default "",
+	departureDate: payload01.departureDate as String default "",
+	price: payload01.price default 0,
+	availableSeats: payload01.availableSeats default 0
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Flow Ended" doc:id="1b8c105f-697b-4d98-aba6-066f04fc49a5" message="Flow Ended"/>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f5640c2c-6483-477f-a505-d1c67c4c8efd" type="DB:BAD_SQL_SYNTAX, DB:CONNECTIVITY, DB:QUERY_EXECUTION">
+				<ee:transform doc:name="Transform Message" doc:id="bd278af3-6fc5-4bf8-91ca-9814c410fcca" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"Message": "Server Error."
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</on-error-propagate>
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="a06ccb61-2158-4853-812e-81e79a120040" type="ANY">
+				<ee:transform doc:name="Transform Message" doc:id="e54b2028-aaf6-4404-85b6-a393b3ea2ec7" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "No Flights Available."
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</on-error-continue>
+		</error-handler>
+	</flow>
+	<flow name="bookIndigoFlight" doc:id="8ed4cdca-d88d-4da1-baec-4e6ad77c9aa4">
+		<logger level="INFO" doc:name="Book Flight" doc:id="2ce26ccf-8ae3-4f25-bdcc-16e094ca01b7" message="Flight Booking Initiated"/>
+		<ee:transform doc:name="Transform Message" doc:id="e7e6820f-47c9-4a2a-b31c-c16b2b787183" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "Flight Booked Successfully."
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Flight Booked" doc:id="883888ae-cfe1-4325-894e-11bcbac5de9c" message="Flight Booked Successfully"/>
+	</flow>
+</mule>

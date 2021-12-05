@@ -1,0 +1,13 @@
+%dw 2.0
+
+type auto_8ed4cdca_d88d_4da1_baec_4e6ad77c9aa4_Input_Payload = {
+  passengers: Array<{    passengerName?: String,     address?: String,     mobileNo?: Number,     seatNo?: Number,     age?: Number,     _?: Any  }>, 
+  price?: Number, 
+  origin: String, 
+  destination: String, 
+  id?: Number, 
+  noOfPassengers?: Number, 
+  departureDate: String, 
+  _?: Any
+}
+
