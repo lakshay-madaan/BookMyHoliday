@@ -1,4 +1,0 @@
-%dw 2.0
-
-type auto_ff9d0550_eec0_4fa2_8eee_ff4a922c859b_Output_Payload = Array<{  flightCode: String,   price: Number,   availableSeats?: Number,   origin: String,   destination: String,   id?: Number,   departureDate: String,   _?: Any}>
-
