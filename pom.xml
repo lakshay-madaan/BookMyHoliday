@@ -50,8 +50,8 @@
 					<classifier>mule-application</classifier>
 					<sharedLibraries>
 						<sharedLibrary>
-							<groupId>com.mycompany</groupId>
-							<artifactId>mysql-connector-java-8.0.16</artifactId>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
 						</sharedLibrary>
 					</sharedLibraries>
 				</configuration>
@@ -84,17 +84,22 @@
 			<version>1.10.4</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.mycompany</groupId>
 			<artifactId>mysql-connector-java-8.0.16</artifactId>
 			<version>0.1</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>6ff08f44-4d5b-4442-8e04-a79d1ad32f1e</groupId>
 			<artifactId>indigo-flights-api</artifactId>
 			<version>1.0.1</version>
 			<classifier>raml</classifier>
 			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.48</version>
 		</dependency>
 	</dependencies>
 
