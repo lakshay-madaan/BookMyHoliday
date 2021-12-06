@@ -1,0 +1,23 @@
+flight:
+  host: "lakshay-process-flight-partner-api.us-e2.cloudhub.io"
+  port: "80"
+  protocol: "HTTP"
+  basePath: "/api/"
+  clientID: "3752abf680264fe5b5de0f9955a29661"
+  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"
+  
+car:
+  host: "lakshay-process-car-rental-partner-api.us-e2.cloudhub.io"
+  port: "80"
+  protocol: "HTTP"
+  basePath: "/api/"
+  clientID: "3752abf680264fe5b5de0f9955a29661"
+  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"
+  
+hotel:
+  host: "lakshay-process-hotel-partner-api.us-e2.cloudhub.io"
+  port: "80"
+  protocol: "HTTP"
+  basePath: "/api/"
+  clientID: "3752abf680264fe5b5de0f9955a29661"
+  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"

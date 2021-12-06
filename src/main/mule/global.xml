@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:hotel-api="http://www.mulesoft.org/schema/mule/hotel-api"
+	xmlns:flight-partner-api="http://www.mulesoft.org/schema/mule/flight-partner-api"
+	xmlns:car-rental-api="http://www.mulesoft.org/schema/mule/car-rental-api" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/car-rental-api http://www.mulesoft.org/schema/mule/car-rental-api/current/mule-car-rental-api.xsd
+http://www.mulesoft.org/schema/mule/flight-partner-api http://www.mulesoft.org/schema/mule/flight-partner-api/current/mule-flight-partner-api.xsd
+http://www.mulesoft.org/schema/mule/hotel-api http://www.mulesoft.org/schema/mule/hotel-api/current/mule-hotel-api.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+	<car-rental-api:config name="Car_rental_api_Config" doc:name="Car-rental-api Config" doc:id="4d7234a2-d9c4-49ee-b9ca-68c62a7c3805" property_host="${car.host}" property_port="${car.port}" property_protocol="${car.protocol}" property_client-id="${car.clientID}" property_client-secret="${car.clientSecret}" property_basePath="${car.basePath}" />
+	<flight-partner-api:config name="Flight_partner_api_Config" doc:name="Flight-partner-api Config" doc:id="afcfcb3d-e441-468e-b51f-609aac9ed3a3" property_host="${flight.host}" property_port="${flight.port}" property_protocol="${flight.protocol}" property_client-id="${flight.clientID}" property_client-secret="${flight.clientSecret}" property_basePath="${flight.basePath}" />
+	<configuration-properties doc:name="Configuration properties" doc:id="6ea522f1-f522-43f6-959c-54b10bea7d6f" file="config.yaml" />
+	<hotel-api:config name="Hotel_api_Config" doc:name="Hotel-api Config" doc:id="eddfe5fd-1df8-4ffd-9803-11df269c73d6" property_host="${hotel.host}" property_port="${hotel.port}" property_protocol="${hotel.protocol}" property_client-id="${hotel.clientID}" property_client-secret="${hotel.clientSecret}" property_basePath="${hotel.basePath}" />
+	<api-gateway:autodiscovery apiId="17485444" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="b8c84a34-6d85-4f3f-a01b-23debc289482" flowRef="experience-book-my-holiday-main" />
+</mule>

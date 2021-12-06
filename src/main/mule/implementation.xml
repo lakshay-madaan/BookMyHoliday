@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:hotel-api="http://www.mulesoft.org/schema/mule/hotel-api" xmlns:car-rental-api="http://www.mulesoft.org/schema/mule/car-rental-api"
+	xmlns:flight-partner-api="http://www.mulesoft.org/schema/mule/flight-partner-api"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/flight-partner-api http://www.mulesoft.org/schema/mule/flight-partner-api/current/mule-flight-partner-api.xsd
+http://www.mulesoft.org/schema/mule/car-rental-api http://www.mulesoft.org/schema/mule/car-rental-api/current/mule-car-rental-api.xsd
+http://www.mulesoft.org/schema/mule/hotel-api http://www.mulesoft.org/schema/mule/hotel-api/current/mule-hotel-api.xsd">
+	<flow name="getFlights" doc:id="129a7327-e657-4179-ab57-dbf2922ab622" >
+		<flight-partner-api:get-flights doc:name="Get Flights." doc:id="638a2dfb-5de8-4e42-b6b1-3ce83559018d" config-ref="Flight_partner_api_Config" origin='#[attributes.queryParams.origin default ""]' destination='#[attributes.queryParams.destination default ""]' departure-date='#[attributes.queryParams.departureDate default ""]'/>
+	</flow>
+	<flow name="bookFlight" doc:id="02366994-d0fe-4c8f-b0e4-8b502d3f9df9" >
+		<flight-partner-api:book-flight doc:name="Book Flight." doc:id="7c65bb78-23b7-425b-9e39-68765b578643" config-ref="Flight_partner_api_Config"/>
+	</flow>
+	<flow name="getHotels" doc:id="15482c5e-3ede-4414-8ec9-d5f204575b2a" >
+		<hotel-api:get-hotels doc:name="Get Hotels" doc:id="5bf432ab-8716-495d-8da6-9eabd992b67a" config-ref="Hotel_api_Config" city='#[attributes.queryParams.city default ""]'/>
+	</flow>
+	<flow name="bookHotel" doc:id="fa49cd22-135a-426e-a819-3cb287003c4e" >
+		<hotel-api:book-hotel doc:name="Book Hotel" doc:id="9a3fb197-aa3c-4945-9672-acb6bb4068ab" config-ref="Hotel_api_Config"/>
+	</flow>
+	<flow name="getCars" doc:id="f32aef2f-e697-410c-ad55-455c7cdcbf12" >
+		<car-rental-api:get-cars doc:name="Get cars" doc:id="a9182b6b-b159-4e55-8b7e-7f6edc5216fd" config-ref="Car_rental_api_Config" city='#[attributes.queryParams.city default ""]' cartype='#[attributes.queryParams.carType default ""]'/>
+	</flow>
+	<flow name="bookCar" doc:id="781f6f1a-5912-43b2-87c7-14a61ec09f0d" >
+		<car-rental-api:create-book-car doc:name="Create book car" doc:id="e8f2861d-a811-4298-a32b-0af7e3b7d327" config-ref="Car_rental_api_Config"/>
+	</flow>
+</mule>

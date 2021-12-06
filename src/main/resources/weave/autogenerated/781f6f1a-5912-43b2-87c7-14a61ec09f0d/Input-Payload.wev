@@ -1,0 +1,14 @@
+%dw 2.0
+
+type auto_781f6f1a_5912_43b2_87c7_14a61ec09f0d_Input_Payload = {
+  carNumber: String, 
+  carType: String, 
+  city: String, 
+  pickUpTime: String, 
+  bookingDate: String, 
+  numberOfDays: Number, 
+  providerName: String, 
+  customerName: String, 
+  _?: Any
+}
+
