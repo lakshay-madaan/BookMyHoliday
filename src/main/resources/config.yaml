@@ -3,21 +3,22 @@ flight:
   port: "80"
   protocol: "HTTP"
   basePath: "/api/"
-  clientID: "3752abf680264fe5b5de0f9955a29661"
-  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"
   
 car:
   host: "lakshay-process-car-rental-partner-api.us-e2.cloudhub.io"
   port: "80"
   protocol: "HTTP"
   basePath: "/api/"
-  clientID: "3752abf680264fe5b5de0f9955a29661"
-  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"
   
 hotel:
   host: "lakshay-process-hotel-partner-api.us-e2.cloudhub.io"
   port: "80"
   protocol: "HTTP"
   basePath: "/api/"
-  clientID: "3752abf680264fe5b5de0f9955a29661"
-  clientSecret: "006a7a786aaD49C08DC0243Dd3777dC4"
+  
+application:
+  clientID: "![b1YN++Dm/hXn6ddRii8KscY26oCI6twDcPnatiDrUgeIfP9ouIhZoK7iBTyHwAmR]"
+  clientSecret: "![cM2hGJcnEWFsmxfqNt6Itx4vgspD/LeKDlH/r/Y04g1Ao9yWlidbFqm88ZBhl0IT]"
+  
+api:
+  id: "17485444"
